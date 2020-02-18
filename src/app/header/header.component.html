@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Accueil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Réservation
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Faire une réservation</a>
+                    <a class="dropdown-item" href="#">Modifier une réservation</a>
+                    <a class="dropdown-item" href="#">Annuler une réservation</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Commande
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Passer une commande</a>
+                    <a class="dropdown-item" href="#">Etat des stocks</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Gestion
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Liste du personnel</a>
+                    <a class="dropdown-item" href="#">Personnel</a>
+                    <a class="dropdown-item" href="#">Stock</a>
+                    <a class="dropdown-item" href="#">Menu</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Facture</a>
+            </li>
+        </ul>
+        <div id="recherche">
+            <form class="form-inline my-2 my-lg-0">                
+                <a class="nav-link" href="#">Mon compte</a>
+                <a href="http://localhost:4200/connexion" id="login" name="login">Se connecter</a>
+                <!-- <a href="http://localhost:4200/accueil" id="logout" name="logout" (click)="deconnexion()" *ngIf="!showLogin">Se déconnecter</a> -->
+            </form>
+        </div>
+    </div>
+</nav>
