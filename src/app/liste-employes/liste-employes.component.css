@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+.btn-outline-warning a{
+    color: gold !important;
+}
+
+.btn-outline-warning:active a{
+    color: black !important;
+}
+
+.btn-outline-warning:hover a{
+    color: black !important;
+}
+

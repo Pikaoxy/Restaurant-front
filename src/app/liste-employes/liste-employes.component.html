@@ -1,0 +1,54 @@
+<body>
+    <div class="container">
+        <br>
+        <h1>Liste des employés</h1>
+    </div>
+
+    <div class="container">
+        <mat-form-field>
+            <mat-label>Recherche</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Cherchez...">
+        </mat-form-field>
+
+    </div>
+
+    <br>
+
+    <div class="container">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+            <td mat-cell *matCellDef="let unEmploye"> {{unEmploye.nom}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+            <td mat-cell *matCellDef="let unEmploye"> {{unEmploye.prenom}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+            <td mat-cell *matCellDef="let unEmploye"> {{unEmploye.statut}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modifier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let unEmploye">
+                <div class="modifier" align="center">
+                    <button type="button" class="btn-outline-warning btn">
+                        <a href="{{'http://localhost:4200/modifier-employe/'+unEmploye.idEmploye}}">Modifier</a>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
+
+</body>

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { DatePipe } from '@angular/common';
 
@@ -18,17 +17,26 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { HeaderComponent } from './header/header.component';
 import { EmployeComponent } from './employe/employe.component';
+import { TableComponent } from './table/table.component';
+import { ListeEmployesComponent } from './liste-employes/liste-employes.component';
+import { ListeTablesComponent } from './liste-tables/liste-tables.component';
+import { ModifierTableComponent } from './modifier-table/modifier-table.component';
+import { ModifierEmployeComponent } from './modifier-employe/modifier-employe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    EmployeComponent
+    EmployeComponent,
+    TableComponent,
+    ListeEmployesComponent,
+    ListeTablesComponent,
+    ModifierTableComponent,
+    ModifierEmployeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SweetAlert2Module.forRoot(),
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,

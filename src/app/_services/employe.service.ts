@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employe } from '../_models/employe';
-import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
