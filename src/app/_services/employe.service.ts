@@ -22,7 +22,7 @@ export class EmployeService {
   }
 
   updateOne(id: number, employe: Employe) {
-    return this.http.put('http://localhost:8080/employes'+id,employe).pipe();
+    return this.http.put('http://localhost:8080/employes/'+id,employe).pipe();
   }
 
   deleteOne(id: number) {

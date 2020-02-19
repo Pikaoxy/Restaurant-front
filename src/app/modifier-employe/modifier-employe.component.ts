@@ -38,6 +38,8 @@ export class ModifierEmployeComponent implements OnInit {
       confirmButtonText: 'Ajouter'
     }).then((result) => {
       if (result.value) {
+        console.log(this.id_emp)
+        console.log(this.newEmploye)
         this.employeService.updateOne(this.id_emp,this.newEmploye).subscribe(
           data => {
             Swal.fire(

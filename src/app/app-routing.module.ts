@@ -6,6 +6,9 @@ import { ListeTablesComponent } from './liste-tables/liste-tables.component';
 import { ListeEmployesComponent } from './liste-employes/liste-employes.component';
 import { ModifierTableComponent } from './modifier-table/modifier-table.component';
 import { ModifierEmployeComponent } from './modifier-employe/modifier-employe.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { MenuComponent } from './menu/menu.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 const routes: Routes = [
@@ -32,6 +35,18 @@ const routes: Routes = [
   {
     path: "modifier-employe/:id",
     component: ModifierEmployeComponent
+  },
+  {
+    path: "accueil",
+    component: AccueilComponent
+  },
+  {
+    path: "menu",
+    component: MenuComponent
+  },
+  {
+    path: "reservation",
+    component: ReservationComponent
   }
 ];
 

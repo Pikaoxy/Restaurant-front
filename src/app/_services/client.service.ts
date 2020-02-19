@@ -28,4 +28,8 @@ export class ClientService {
   deleteOne(id: number) {
     return this.http.delete('http://localhost:8080/clients/'+id).pipe();
   }
+
+  getByTel(tel: String) {
+    return this.http.post<Client>("http://localhost:8080/clients/tel",tel).pipe();
+  }
 }
