@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../_models/reservation';
+import { Table } from '../_models/table';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,13 @@ export class ReservationService {
 
   deleteOne(id: number) {
     return this.http.delete('http://localhost:8080/reservations/'+id).pipe();
+  }
+
+  getTablesDispoByDate(date: Date) {
+    return this.http.post<Table[]>("http://localhost:8080/reservations/date/tables-dispo",date).pipe();
+  }
+
+  getByDate(date: Date) {
+    return this.http.post<Reservation[]>("http://localhost:8080/reservations/date",date).pipe();
   }
 }
