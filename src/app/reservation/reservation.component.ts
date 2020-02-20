@@ -24,8 +24,6 @@ export class ReservationComponent implements OnInit {
   listeResa: Reservation[] = [];
   id_cli: number;
 
-  clientTel: Client = new Client;
-
   constructor(private clientService: ClientService,
     private reservationService: ReservationService) { }
 

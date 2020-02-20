@@ -9,6 +9,7 @@ import { ModifierEmployeComponent } from './modifier-employe/modifier-employe.co
 import { AccueilComponent } from './accueil/accueil.component';
 import { MenuComponent } from './menu/menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: "reservation",
     component: ReservationComponent
+  },
+  {
+    path: "liste-reservations",
+    component: ListeReservationsComponent
   }
 ];
 

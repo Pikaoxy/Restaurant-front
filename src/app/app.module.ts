@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 import { HeaderComponent } from './header/header.component';
 import { EmployeComponent } from './employe/employe.component';
 import { TableComponent } from './table/table.component';
@@ -27,6 +29,7 @@ import { ModifierEmployeComponent } from './modifier-employe/modifier-employe.co
 import { ReservationComponent } from './reservation/reservation.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { MenuComponent } from './menu/menu.component';
+import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { MenuComponent } from './menu/menu.component';
     ModifierEmployeComponent,
     ReservationComponent,
     AccueilComponent,
-    MenuComponent
+    MenuComponent,
+    ListeReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { MenuComponent } from './menu/menu.component';
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FullCalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
