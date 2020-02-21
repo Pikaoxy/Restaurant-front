@@ -3,4 +3,6 @@ export class Employe {
     nom: String;
     prenom: String;
     statut: String;
+    login: String;
+    mdp: String;
 }

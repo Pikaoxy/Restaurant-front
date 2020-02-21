@@ -10,6 +10,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MenuComponent } from './menu/menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: "liste-reservations",
     component: ListeReservationsComponent
+  },
+  {
+    path: "connexion",
+    component: ConnexionComponent
   }
 ];
 

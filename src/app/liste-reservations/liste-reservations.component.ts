@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ReservationService } from '../_services/reservation.service';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
+import { Reservation } from '../_models/reservation';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -20,8 +22,17 @@ export class ListeReservationsComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
   calendarEvents: EventInput[] = [
-    { title: 'Event Now', start: new Date() }
+/*     { title: 'Event Now', start: new Date() } */
   ];
+  calendarTimeZone = 'Europe/Paris';
+  calendarDroppable = true;
+  
+  listeReservations: Reservation[] = [];
+  event: EventInput;
+  titre: string;
+  newDateDebut;
+  newDateFin;
+  heureDebut;
 
   toggleVisible() {
     this.calendarVisible = !this.calendarVisible;
@@ -49,7 +60,24 @@ export class ListeReservationsComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit() {
-
+    this.reservationService.getAll().subscribe(
+      data => {
+        this.listeReservations=data;
+        this.listeReservations.forEach(element => {
+          console.log(element)
+          this.titre = element.client.nom.concat(" ",element.client.prenom)
+          console.log(this.titre)
+          this.newDateDebut = element.dateDebut;  /* formatDate(element.dateDebut,'yyyy-MM-dd HH:mm','UTC+1'); */
+          this.newDateFin = element.dateFin; /* formatDate(element.dateFin,'yyyy-MM-dd HH:mm','UTC+1'); */
+          this.calendarEvents=this.calendarEvents.concat({
+            title: this.titre,
+            start: this.newDateDebut,
+            end: this.newDateFin
+            })
+            console.log(this.calendarEvents)
+        });
+      }
+    )
     
 
   }

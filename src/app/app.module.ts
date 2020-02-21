@@ -30,6 +30,7 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ListeReservationsComponent } from './liste-reservations/liste-reservati
     ReservationComponent,
     AccueilComponent,
     MenuComponent,
-    ListeReservationsComponent
+    ListeReservationsComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,

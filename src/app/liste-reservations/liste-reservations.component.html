@@ -2,13 +2,6 @@
 
 <div class='app'>
 
-  <div class='app-top'>
-    <button (click)='toggleVisible()'>toggle visible</button>
-    <button (click)='toggleWeekends()'>toggle weekends</button>
-    <button (click)='gotoPast()'>go to a date in the past</button>
-    (also, click a date/time to add an event)
-  </div>
-
   <div class='app-calendar'>
     <full-calendar
       #calendar
@@ -18,33 +11,17 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       }"
-      [plugins]="calendarPlugins"
       [weekends]="calendarWeekends"
+      [timeZone]="local"
+      [timeZoneParam]="calendarTimeZone"
+      [plugins]="calendarPlugins"
+      [droppable]="calendarDroppable"
+      [editable]="true"
       [events]="calendarEvents"
+      [eventDurationEditable]="false"
       (dateClick)="handleDateClick($event)"
+
     ></full-calendar>
   </div>
 
 </div>
-
-<!-- <link href='../../../node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
-<link href='../../../node_modules/@fullcalendar/fullcalendar/daygrid/main.css' rel='stylesheet' /> -->
-
-<script src='../../../node_modules/@fullcalendar/fullcalendar/core/main.js'></script>
-<script src='../../../node_modules/@fullcalendar/fullcalendar/daygrid/main.js'></script>
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: [ 'timeGrid' ],
-    defaultView: 'timeGridDay',
-    nowIndicator: true,
-    now: '2018-02-13T09:25:00' // just for demo
-  });
-
-  calendar.render();
-});
-
-</script>

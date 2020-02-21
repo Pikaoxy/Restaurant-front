@@ -28,4 +28,8 @@ export class EmployeService {
   deleteOne(id: number) {
     return this.http.delete('http://localhost:8080/employes/'+id).pipe();
   }
+
+  getTokenByLogin(employe: Employe) {
+    return this.http.post<String>("http://localhost:8080/employes/connexion/token",employe).pipe();
+  }
 }

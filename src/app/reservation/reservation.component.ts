@@ -4,6 +4,7 @@ import { Client } from '../_models/client';
 import { Reservation } from '../_models/reservation';
 import { ReservationService } from '../_services/reservation.service';
 import { Table } from '../_models/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reservation',
@@ -62,7 +63,11 @@ export class ReservationComponent implements OnInit {
                           this.newReservation.client = data;
                           this.reservationService.addOne(this.newReservation).subscribe(
                             data => {
-
+                              Swal.fire(
+                                'Bien joué !',
+                                'Réservation réussie !',
+                                'success'
+                              );
                             }
                           );
                         }
@@ -79,12 +84,21 @@ export class ReservationComponent implements OnInit {
                       if (this.listeResa.length == 0) {
                         this.reservationService.addOne(this.newReservation).subscribe(
                           data => {
-
+                            Swal.fire(
+                              'Bien joué !',
+                              'Réservation réussie !',
+                              'success'
+                            );
                           }
                         );
                       }
                       else {
                         console.log("Vous ne pouvez réserver qu'une seule table pour un créneau donné")
+                        Swal.fire(
+                          'Dommage !',
+                          "Vous ne pouvez réserver qu'une seule table pour un créneau...",
+                          'error'
+                        );
                       }
                     }
                   );
@@ -94,10 +108,20 @@ export class ReservationComponent implements OnInit {
           }
           else {
             console.log("Il n'y a plus de table disponible pour ce nombre de personnes")
+            Swal.fire(
+              'Dommage !',
+              "Il n'y a plus de table disponible pour ce nombre de personnes...",
+              'error'
+            );
           }
         }
         else {
           console.log("Il n'y a plus de table disponible pour ce créneau")
+          Swal.fire(
+            'Dommage !',
+            "Il n'y a plus de table disponible pour ce créneau...",
+            'error'
+          );
         }
       }
     );
