@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="#">Annuler une réservation</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" *ngIf="!showLogin">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Commande
@@ -31,7 +31,7 @@
                     <a class="dropdown-item" href="#">Etat des stocks</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" *ngIf="showAdmin">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Gestion
@@ -47,14 +47,14 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Facture</a>
+                <a class="nav-link" href="#" *ngIf="!showLogin">Facture</a>
             </li>
         </ul>
         <div id="recherche">
             <form class="form-inline my-2 my-lg-0">                
-                <a class="nav-link" href="#">Mon compte</a>
-                <a href="http://localhost:4200/connexion" id="login" name="login">Se connecter</a>
-                <!-- <a href="http://localhost:4200/accueil" id="logout" name="logout" (click)="deconnexion()" *ngIf="!showLogin">Se déconnecter</a> -->
+                <a class="nav-link" href="#" *ngIf="!showLogin">Mon compte</a>
+                <a href="http://localhost:4200/connexion" id="login" name="login" *ngIf="showLogin">Se connecter</a>
+                <a href="http://localhost:4200/accueil" id="logout" name="logout" (click)="deconnexion()" *ngIf="!showLogin">Se déconnecter</a>
             </form>
         </div>
     </div>

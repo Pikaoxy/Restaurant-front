@@ -11,32 +11,40 @@ import { MenuComponent } from './menu/menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { AuthGuardService } from './_services/auth-guard.service';
+import { AuthGuardManagerService } from './_services/auth-guard-manager.service';
 
 
 const routes: Routes = [
   {
     path: "employe",
-    component: EmployeComponent
+    component: EmployeComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "table",
-    component: TableComponent
+    component: TableComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "liste-tables",
-    component: ListeTablesComponent
+    component: ListeTablesComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "liste-employes",
-    component: ListeEmployesComponent
+    component: ListeEmployesComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "modifier-table/:id",
-    component: ModifierTableComponent
+    component: ModifierTableComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "modifier-employe/:id",
-    component: ModifierEmployeComponent
+    component: ModifierEmployeComponent,
+    canActivate: [AuthGuardService,AuthGuardManagerService]
   },
   {
     path: "accueil",
@@ -52,7 +60,8 @@ const routes: Routes = [
   },
   {
     path: "liste-reservations",
-    component: ListeReservationsComponent
+    component: ListeReservationsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "connexion",
