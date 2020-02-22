@@ -5,5 +5,6 @@ export class Plat {
     nom: String;
     stock: number;
     prix: number;
-    commande: Commande;
+    categorie: String;
+    qte: number;
 }

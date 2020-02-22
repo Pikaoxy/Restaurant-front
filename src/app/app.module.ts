@@ -16,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { MatListModule } from '@angular/material/list'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -31,6 +34,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { CommandeComponent } from './commande/commande.component';
+import { PlatComponent } from './plat/plat.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
     AccueilComponent,
     MenuComponent,
     ListeReservationsComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    CommandeComponent,
+    PlatComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
+    MatListModule,
+    MatTabsModule,
+    MatButtonModule,
     FontAwesomeModule,
     FullCalendarModule
   ],

@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+.quantite {
+    margin-inline-start: auto;
+    width: 20%;
+    margin-right: 15%;
+}
+
+.confirmer {
+    margin-left: 15%;
+}
+
+.second-header-row {
+    font-style: italic;
+}
+

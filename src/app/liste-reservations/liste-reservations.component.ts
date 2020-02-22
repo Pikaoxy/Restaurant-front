@@ -26,6 +26,8 @@ export class ListeReservationsComponent implements OnInit {
   ];
   calendarTimeZone = 'Europe/Paris';
   calendarDroppable = true;
+  calendarMinTime = '10:00:00';
+  calendarEventSources = this
   
   listeReservations: Reservation[] = [];
   event: EventInput;
@@ -33,6 +35,9 @@ export class ListeReservationsComponent implements OnInit {
   newDateDebut;
   newDateFin;
   heureDebut;
+
+  options;
+
 
   toggleVisible() {
     this.calendarVisible = !this.calendarVisible;
@@ -70,16 +75,41 @@ export class ListeReservationsComponent implements OnInit {
           this.newDateDebut = element.dateDebut;  /* formatDate(element.dateDebut,'yyyy-MM-dd HH:mm','UTC+1'); */
           this.newDateFin = element.dateFin; /* formatDate(element.dateFin,'yyyy-MM-dd HH:mm','UTC+1'); */
           this.calendarEvents=this.calendarEvents.concat({
+            id: element.idReservation,
             title: this.titre,
             start: this.newDateDebut,
             end: this.newDateFin
             })
             console.log(this.calendarEvents)
         });
+      
+
       }
     )
-    
 
+    this.options = {
+      customButtons: { 
+        test:{
+          text:"click for Now",
+          click: function(){
+            this.calendarComp.getNow();  //Example function present in Main.d.ts of Fullcalendar/core
+          }
+        }
+      }
+    }
+
+    
+    
   }
+
+  deleteEventClick() {
+    if (this.event.id) {
+      alert(this.event.id)
+    }
+/*     if (confirm('Voulez-vous supprimer cet événement ?')) {
+      this.calendarComponent.
+    } */
+  }
+
 
 }

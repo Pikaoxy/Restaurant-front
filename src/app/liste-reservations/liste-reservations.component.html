@@ -20,6 +20,9 @@
       [events]="calendarEvents"
       [eventDurationEditable]="false"
       (dateClick)="handleDateClick($event)"
+      (eventClick)="options.eventClick"
+      [minTime]="calendarMinTime"
+      [customButtons]="options.customButtons"
 
     ></full-calendar>
   </div>

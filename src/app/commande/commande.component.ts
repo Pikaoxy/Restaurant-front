@@ -1,0 +1,168 @@
+import { Component, OnInit } from '@angular/core';
+import { PlatService } from '../_services/plat.service';
+import { CommandeService } from '../_services/commande.service';
+import { Plat } from '../_models/plat';
+import { ChoixService } from '../_services/choix.service';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { Choix } from '../_models/choix';
+import { Table } from '../_models/table';
+import { Commande } from '../_models/commande';
+import { CommandeResa } from '../_models/commanderesa';
+import { TableService } from '../_services/table.service';
+
+@Component({
+  selector: 'app-commande',
+  templateUrl: './commande.component.html',
+  styleUrls: ['./commande.component.css']
+})
+export class CommandeComponent implements OnInit {
+
+  listeEntrees: Plat[] = [];
+  listePlatsRes: Plat[] = [];
+  listeDesserts: Plat[] = [];
+  listeBoissons: Plat[] = [];
+  listeTables: Table[] = [];
+  id_table: number;
+  table: Table = new Table;
+  date: Date;
+  heure: Date;
+  creneau: Date;
+  unChoix: Choix = new Choix;
+  newCommande: Commande = new Commande;
+  cetteCommande: Commande = new Commande;
+  infoCommande: CommandeResa = new CommandeResa;
+  showValider: Boolean = true;
+  showCommande: Boolean = false;
+
+  // Initialisation des colonnes
+  displayedColumns: string[] = ['plat', 'qte', 'supprimer'];
+  // Initialisation de la source de données
+  dataSource = new MatTableDataSource<Choix>();
+
+  refresh() {
+    this.choixService.getByCommande(this.cetteCommande).subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
+  }
+
+  constructor(private platService: PlatService,
+    private commandeService: CommandeService,
+    private choixService: ChoixService,
+    private tableService: TableService) { }
+
+  ngOnInit() {
+    this.tableService.getAll().subscribe(
+      data => {
+        this.listeTables = data;
+      }
+    );
+    this.platService.getByCategorie("Entrée").subscribe(
+      data => {
+        this.listeEntrees = data;
+      }
+    );
+    this.platService.getByCategorie("Plat").subscribe(
+      data => {
+        this.listePlatsRes = data;
+      }
+    );
+    this.platService.getByCategorie("Dessert").subscribe(
+      data => {
+        this.listeDesserts = data;
+      }
+    );
+    this.platService.getByCategorie("Boisson").subscribe(
+      data => {
+        this.listeBoissons = data;
+      }
+    );
+  }
+
+
+  createCommande() {
+    this.tableService.getOne(this.id_table).subscribe(
+      data => {
+        this.table = data;
+        this.newCommande.table = this.table;
+        this.creneau = new Date(this.date + ' ' + this.heure);
+        this.newCommande.date = this.creneau;
+        console.log(this.newCommande)
+        this.infoCommande.date = this.creneau;
+        this.infoCommande.table = this.table;
+        this.commandeService.getOneByTableAndDate(this.infoCommande).subscribe(
+          data => {
+            if (data == null) {
+              this.commandeService.addOne(this.newCommande).subscribe(
+                data => {
+
+                  this.commandeService.getOneByTableAndDate(this.infoCommande).subscribe(
+                    data => {
+                      console.log(data)
+                      this.cetteCommande = data;
+                      this.choixService.getByCommande(this.cetteCommande).subscribe(
+                        data => {
+                          this.dataSource.data = data;
+                        }
+                      );
+                    }
+                  );
+                }
+              );
+            }
+            else {
+              console.log("Commande déjà existante");
+              console.log(data)
+              this.cetteCommande = data;
+              this.choixService.getByCommande(this.cetteCommande).subscribe(
+                data => {
+                  this.dataSource.data = data;
+                }
+              );
+            }
+          }
+        );
+
+      }
+    );
+    this.showValider = false;
+    this.showCommande = true;
+  }
+
+  addChoix(id, nb) {
+    this.creneau = new Date(this.date + ' ' + this.heure);
+    this.infoCommande.date = this.creneau;
+    this.infoCommande.table = this.table;
+    console.log(this.infoCommande)
+    this.commandeService.getOneByTableAndDate(this.infoCommande).subscribe(
+      data => {
+        this.cetteCommande = data;
+        console.log(this.cetteCommande)
+        this.platService.getOne(id).subscribe(
+          data => {
+            this.unChoix.plat = data;
+            this.unChoix.nbPlat = nb;
+            this.unChoix.commande = this.cetteCommande;
+            console.log(this.unChoix)
+            this.choixService.addOne(this.unChoix).subscribe(
+              data => {
+                this.refresh();
+              }
+            );
+          }
+        );
+      }
+    );
+  }
+
+  supprimerChoix(id) {
+    this.choixService.deleteOne(id).subscribe(
+      data => {
+        this.refresh();
+      }
+    );
+  }
+
+}

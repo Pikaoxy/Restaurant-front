@@ -28,4 +28,8 @@ export class PlatService {
   deleteOne(id: number) {
     return this.http.delete('http://localhost:8080/plats/'+id).pipe();
   }
+
+  getByCategorie(categorie: String) {
+    return this.http.post<Plat[]>("http://localhost:8080/plats/categorie",categorie).pipe();
+  }
 }

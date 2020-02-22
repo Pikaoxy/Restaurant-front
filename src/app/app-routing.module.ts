@@ -13,6 +13,8 @@ import { ListeReservationsComponent } from './liste-reservations/liste-reservati
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AuthGuardService } from './_services/auth-guard.service';
 import { AuthGuardManagerService } from './_services/auth-guard-manager.service';
+import { CommandeComponent } from './commande/commande.component';
+import { PlatComponent } from './plat/plat.component';
 
 
 const routes: Routes = [
@@ -66,6 +68,14 @@ const routes: Routes = [
   {
     path: "connexion",
     component: ConnexionComponent
+  },
+  {
+    path: "commande",
+    component: CommandeComponent
+  },
+  {
+    path: "plat",
+    component: PlatComponent
   }
 ];
 
