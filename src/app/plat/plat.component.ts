@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlatService } from '../_services/plat.service';
 import { Plat } from '../_models/plat';
 import Swal from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-plat',
@@ -11,10 +14,89 @@ import Swal from 'sweetalert2';
 export class PlatComponent implements OnInit {
 
   newPlat: Plat = new Plat;
+  listeEntrees: Plat[] = [];
+  listePlats: Plat[] = [];
+  listeDesserts: Plat[] = [];
+  listeBoissons: Plat[] = [];
+  selected = new FormControl(0);
+  modifPlat: Plat = new Plat;
+  modif = new FormControl(0);
 
-  constructor(private platService: PlatService) { }
+  
+
+    // Initialisation des colonnes
+    displayedColumns: string[] = ['nom', 'prix', 'stock', 'modifier'];
+    // Initialisation de la source de données
+    dataSourceEntrees = new MatTableDataSource<Plat>();
+    dataSourcePlats = new MatTableDataSource<Plat>();
+    dataSourceDesserts = new MatTableDataSource<Plat>();
+    dataSourceBoissons = new MatTableDataSource<Plat>();
+
+    tabs = ['0 - Entrées', '1 - Plats', '2 - Desserts', '3 - Boissons'];
+
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  constructor(private platService: PlatService) { 
+    this.getAll();
+  }
 
   ngOnInit() {
+  }
+
+  getAll() {
+    this.platService.getByCategorie("Entrée").subscribe(
+      data => {
+        this.listeEntrees = data;
+        this.dataSourceEntrees = new MatTableDataSource(this.listeEntrees);
+        this.dataSourceEntrees.sort = this.sort;
+      }
+    );
+    this.platService.getByCategorie("Plat").subscribe(
+      data => {
+        this.listePlats = data;
+        this.dataSourcePlats = new MatTableDataSource(this.listePlats);
+        this.dataSourcePlats.sort = this.sort;
+      }
+    );
+    this.platService.getByCategorie("Dessert").subscribe(
+      data => {
+        this.listeDesserts = data;
+        this.dataSourceDesserts = new MatTableDataSource(this.listeDesserts);
+        this.dataSourceDesserts.sort = this.sort;
+      }
+    );
+    this.platService.getByCategorie("Boisson").subscribe(
+      data => {
+        this.listeBoissons = data;
+        this.dataSourceBoissons = new MatTableDataSource(this.listeBoissons);
+        this.dataSourceBoissons.sort = this.sort;
+      }
+    );
+
+  }
+
+  refresh() {
+    this.platService.getByCategorie("Entrée").subscribe(
+      data => {
+        this.dataSourceEntrees.data = data;
+      }
+    );
+    this.platService.getByCategorie("Plat").subscribe(
+      data => {
+        this.dataSourcePlats.data = data;
+        
+      }
+    );
+    this.platService.getByCategorie("Dessert").subscribe(
+      data => {
+        this.dataSourceDesserts.data = data;
+      }
+    );
+    this.platService.getByCategorie("Boisson").subscribe(
+      data => {
+        this.dataSourceBoissons.data = data;
+      }
+    );
   }
 
   ajouterPlat() {
@@ -35,10 +117,31 @@ export class PlatComponent implements OnInit {
               'Votre palt a bien été ajouté.',
               'success'
             );
+            this.refresh();
           }
         );
       }
     });
+  }
+
+  modifierPlat(id) {
+    this.modif.setValue(1);
+
+    this.platService.getOne(id).subscribe(
+      data => {
+        this.modifPlat = data;
+      }
+    );
+  }
+
+  modificationPlat() {
+    console.log(this.modifPlat)
+    this.platService.updateOne(this.modifPlat.idPlat,this.modifPlat).subscribe(
+      data => {
+        this.refresh();
+        this.modif.setValue(0);
+      }
+    );
   }
 
 }

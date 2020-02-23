@@ -11,6 +11,8 @@ import { Commande } from '../_models/commande';
 import { CommandeResa } from '../_models/commanderesa';
 import { TableService } from '../_services/table.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-commande',
   templateUrl: './commande.component.html',
@@ -34,6 +36,7 @@ export class CommandeComponent implements OnInit {
   infoCommande: CommandeResa = new CommandeResa;
   showValider: Boolean = true;
   showCommande: Boolean = false;
+  cePlat: Plat = new Plat;
 
   // Initialisation des colonnes
   displayedColumns: string[] = ['plat', 'qte', 'supprimer'];
@@ -124,11 +127,15 @@ export class CommandeComponent implements OnInit {
             }
           }
         );
-
       }
     );
     this.showValider = false;
     this.showCommande = true;
+  }
+
+  cancelCommande() {
+    this.showValider = true;
+    this.showCommande = false;
   }
 
   addChoix(id, nb) {
@@ -142,13 +149,20 @@ export class CommandeComponent implements OnInit {
         console.log(this.cetteCommande)
         this.platService.getOne(id).subscribe(
           data => {
-            this.unChoix.plat = data;
+            this.cePlat = data;
+            this.unChoix.plat = this.cePlat;
             this.unChoix.nbPlat = nb;
             this.unChoix.commande = this.cetteCommande;
             console.log(this.unChoix)
             this.choixService.addOne(this.unChoix).subscribe(
               data => {
-                this.refresh();
+                this.cePlat.stock = this.cePlat.stock - nb;
+                console.log(this.cePlat.stock)
+                this.platService.updateOne(id, this.cePlat).subscribe(
+                  data => {
+                    this.refresh();
+                  }
+                );
               }
             );
           }
@@ -157,12 +171,55 @@ export class CommandeComponent implements OnInit {
     );
   }
 
-  supprimerChoix(id) {
-    this.choixService.deleteOne(id).subscribe(
-      data => {
-        this.refresh();
+  supprimerChoix(id, nb) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: "Voulez-vous supprimer ce choix ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF0909',
+      cancelButtonColor: '#D7D7D7',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
+        this.choixService.getOne(id).subscribe(
+          data => {
+            this.platService.getOne(data.plat.idPlat).subscribe(
+              data => {
+                data.stock = data.stock + nb;
+                console.log(data.stock)
+                this.platService.updateOne(data.idPlat, data).subscribe(
+                  data => {
+                    this.choixService.deleteOne(id).subscribe(
+                      data => {
+                        this.refresh();
+                        if (data == true) {
+                          Swal.fire(
+                            'Réussite !',
+                            'Votre choix a bien été supprimé.',
+                            'success'
+                          );
+                        }
+                        else {
+                          Swal.fire(
+                            'Echec...',
+                            "Votre choix n'a pas pu être supprimé.",
+                            'error'
+                          );
+                        }
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
+        );
       }
+    }
     );
   }
+
 
 }
