@@ -33,4 +33,8 @@ export class ChoixService {
   getByCommande(commande: Commande) {
     return this.http.post<Choix[]>("http://localhost:8080/choix/commande",commande).pipe();
   }
+
+  getByIdCommande(id: number) {
+    return this.http.get<Choix[]>('http://localhost:8080/choix/commande/'+id).pipe();
+  }
 }

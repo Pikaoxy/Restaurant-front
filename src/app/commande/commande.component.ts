@@ -153,6 +153,7 @@ export class CommandeComponent implements OnInit {
             this.unChoix.plat = this.cePlat;
             this.unChoix.nbPlat = nb;
             this.unChoix.commande = this.cetteCommande;
+            this.unChoix.montantChoix = this.cePlat.prix*nb;
             console.log(this.unChoix)
             this.choixService.addOne(this.unChoix).subscribe(
               data => {

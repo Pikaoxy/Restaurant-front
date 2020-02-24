@@ -32,8 +32,8 @@ export class ListeReservationsComponent implements OnInit {
   listeReservations: Reservation[] = [];
   event: EventInput;
   titre: string;
-  newDateDebut;
-  newDateFin;
+  newDateDebut: Date = new Date();
+  newDateFin: Date = new Date();
   heureDebut;
 
   options;
@@ -72,8 +72,10 @@ export class ListeReservationsComponent implements OnInit {
           console.log(element)
           this.titre = element.client.nom.concat(" ",element.client.prenom)
           console.log(this.titre)
-          this.newDateDebut = element.dateDebut;  /* formatDate(element.dateDebut,'yyyy-MM-dd HH:mm','UTC+1'); */
-          this.newDateFin = element.dateFin; /* formatDate(element.dateFin,'yyyy-MM-dd HH:mm','UTC+1'); */
+          this.newDateDebut = new Date(element.dateDebut);  /* formatDate(element.dateDebut,'yyyy-MM-dd HH:mm','UTC+1'); */
+          this.newDateDebut.setHours(this.newDateDebut.getHours()+1);
+          this.newDateFin = new Date(element.dateFin); /* formatDate(element.dateFin,'yyyy-MM-dd HH:mm','UTC+1'); */
+          this.newDateFin.setHours(this.newDateFin.getHours()+1);
           this.calendarEvents=this.calendarEvents.concat({
             id: element.idReservation,
             title: this.titre,

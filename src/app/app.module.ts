@@ -38,6 +38,7 @@ import { ListeReservationsComponent } from './liste-reservations/liste-reservati
 import { ConnexionComponent } from './connexion/connexion.component';
 import { CommandeComponent } from './commande/commande.component';
 import { PlatComponent } from './plat/plat.component';
+import { FactureComponent } from './facture/facture.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PlatComponent } from './plat/plat.component';
     ListeReservationsComponent,
     ConnexionComponent,
     CommandeComponent,
-    PlatComponent
+    PlatComponent,
+    FactureComponent
   ],
   imports: [
     BrowserModule,

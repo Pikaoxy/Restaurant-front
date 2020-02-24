@@ -6,4 +6,5 @@ export class Choix {
     commande: Commande;
     plat: Plat;
     nbPlat: number;
+    montantChoix: number;
 }

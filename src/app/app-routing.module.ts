@@ -15,6 +15,7 @@ import { AuthGuardService } from './_services/auth-guard.service';
 import { AuthGuardManagerService } from './_services/auth-guard-manager.service';
 import { CommandeComponent } from './commande/commande.component';
 import { PlatComponent } from './plat/plat.component';
+import { FactureComponent } from './facture/facture.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path: "plat",
     component: PlatComponent
+  },
+  {
+    path: "facture",
+    component: FactureComponent
   }
 ];
 

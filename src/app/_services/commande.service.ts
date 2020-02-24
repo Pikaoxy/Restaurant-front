@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Commande } from '../_models/commande';
 import { CommandeResa } from '../_models/commanderesa';
+import { MontantFacture } from '../_models/montantfacture';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class CommandeService {
 
   getOneByTableAndDate(commanderesa: CommandeResa) {
     return this.http.post<Commande>("http://localhost:8080/commandes/resa",commanderesa).pipe();
+  }
+
+  getMontantById(id: number) {
+    return this.http.get<MontantFacture>('http://localhost:8080/commandes/montant/'+id).pipe();
   }
 }
