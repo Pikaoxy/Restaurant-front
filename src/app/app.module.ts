@@ -21,6 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -39,6 +41,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { CommandeComponent } from './commande/commande.component';
 import { PlatComponent } from './plat/plat.component';
 import { FactureComponent } from './facture/facture.component';
+
 
 @NgModule({
   declarations: [
@@ -76,6 +79,8 @@ import { FactureComponent } from './facture/facture.component';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
     FontAwesomeModule,
     FullCalendarModule,
 

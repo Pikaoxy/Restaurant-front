@@ -38,6 +38,9 @@ export class CommandeComponent implements OnInit {
   showCommande: Boolean = false;
   cePlat: Plat = new Plat;
 
+  testDate: Date;
+  testDate2: Date;
+
   // Initialisation des colonnes
   displayedColumns: string[] = ['plat', 'qte', 'supprimer'];
   // Initialisation de la source de données
@@ -84,13 +87,24 @@ export class CommandeComponent implements OnInit {
     );
   }
 
+  testerDate() {
+    console.log(this.testDate)
+    console.log(this.testDate.getDate())
+    console.log(this.testDate.getMonth()+1)
+    console.log(this.testDate.getFullYear())
+    var dateMois = this.testDate.getMonth()+1;
+    console.log(new Date(this.testDate.getFullYear()+'-'+dateMois+'-'+this.testDate.getDate()))
+    console.log(this.testDate2)
+  }
+
 
   createCommande() {
     this.tableService.getOne(this.id_table).subscribe(
       data => {
         this.table = data;
         this.newCommande.table = this.table;
-        this.creneau = new Date(this.date + ' ' + this.heure);
+        var dateMois = this.date.getMonth()+1;
+        this.creneau = new Date(this.date.getFullYear()+'-'+dateMois+'-'+this.date.getDate() + ' ' + this.heure);
         this.newCommande.date = this.creneau;
         console.log(this.newCommande)
         this.infoCommande.date = this.creneau;

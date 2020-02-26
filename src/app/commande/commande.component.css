@@ -21,3 +21,13 @@ table {
     font-style: italic;
 }
 
+.example-container .mat-form-field {
+    width: 30%;
+    margin-left: 3%;
+}
+
+
+.mat-raised-button.mat-accent {
+    background-color: #757575;
+}
+

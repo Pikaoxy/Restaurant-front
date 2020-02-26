@@ -1,4 +1,11 @@
+.app-top {
+  margin: 0 0 3em;
+}
+
 .app-calendar {
-    margin: 0 auto;
-    max-width: 900px;
-  }
+  margin: 0 auto;
+  max-width: 900px;
+  height: 800px;
+}
+
+.fc-time-grid .fc-slats td { height: 2.2em !important }

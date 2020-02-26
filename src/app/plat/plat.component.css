@@ -6,3 +6,11 @@ table {
     color: #000000;
     background-color: gold;
 }
+
+.mat-raised-button.mat-warn {
+    margin-left: 2%;
+}
+
+.mat-flat-button {
+    background-color: #D7D7D7 !important;
+}

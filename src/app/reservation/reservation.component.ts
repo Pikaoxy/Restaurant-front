@@ -63,11 +63,15 @@ export class ReservationComponent implements OnInit {
                           this.newReservation.client = data;
                           this.reservationService.addOne(this.newReservation).subscribe(
                             data => {
-                              Swal.fire(
-                                'Bien joué !',
-                                'Réservation réussie !',
-                                'success'
-                              );
+                              Swal.fire({
+                                title: 'Bien joué !',
+                                text: 'Réservation réussie !',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500,
+                              }).then(function() {
+                                window.location.href = "http://localhost:4200/accueil";
+                              });
                             }
                           );
                         }
@@ -84,11 +88,15 @@ export class ReservationComponent implements OnInit {
                       if (this.listeResa.length == 0) {
                         this.reservationService.addOne(this.newReservation).subscribe(
                           data => {
-                            Swal.fire(
-                              'Bien joué !',
-                              'Réservation réussie !',
-                              'success'
-                            );
+                            Swal.fire({
+                              title: 'Bien joué !',
+                              text: 'Réservation réussie !',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1500,
+                            }).then(function() {
+                              window.location.href = "http://localhost:4200/accueil";
+                            });
                           }
                         );
                       }

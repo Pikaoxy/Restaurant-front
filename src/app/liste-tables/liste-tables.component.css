@@ -19,3 +19,15 @@ table {
     color: black !important;
 }
 
+.mat-raised-button.mat-accent {
+    background-color: gold;
+}
+
+.modif-icon {
+    color: black;
+}
+
+.mat-raised-button.mat-warn {
+    margin-left: 3%;
+}
+

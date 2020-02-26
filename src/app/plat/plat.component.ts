@@ -47,6 +47,7 @@ export class PlatComponent implements OnInit {
     this.platService.getByCategorie("Entrée").subscribe(
       data => {
         this.listeEntrees = data;
+        console.log(this.listeEntrees)
         this.dataSourceEntrees = new MatTableDataSource(this.listeEntrees);
         this.dataSourceEntrees.sort = this.sort;
       }
@@ -114,7 +115,7 @@ export class PlatComponent implements OnInit {
           data => {
             Swal.fire(
               'Ajouté !',
-              'Votre palt a bien été ajouté.',
+              'Votre plat a bien été ajouté.',
               'success'
             );
             this.refresh();
@@ -141,6 +142,43 @@ export class PlatComponent implements OnInit {
         this.refresh();
         this.modif.setValue(0);
       }
+    );
+  }
+
+  supprimerPlat(id) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: "Voulez-vous supprimer ce choix ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF0909',
+      cancelButtonColor: '#D7D7D7',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
+        this.refresh();
+        this.platService.deleteOne(id).subscribe(
+          data => {
+            this.refresh();
+            if (data == true) {
+              Swal.fire(
+                'Réussite !',
+                'Votre choix a bien été supprimé.',
+                'success'
+              );
+            }
+            else {
+              Swal.fire(
+                'Echec...',
+                "Votre choix n'a pas pu être supprimé.",
+                'error'
+              );
+            }
+          }
+        );
+      }
+    }
     );
   }
 

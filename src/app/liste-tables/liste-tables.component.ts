@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableService } from '../_services/table.service';
 import { Table } from '../_models/table';
+import Swal from 'sweetalert2'
 
 // Imports Angular Material
 
@@ -57,6 +58,51 @@ export class ListeTablesComponent implements OnInit {
           }
         };
       });
+  }
+
+  refresh() {
+    this.tableService.getAll().subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
+  }
+
+  supprimerTable(id) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: "Voulez-vous supprimer cette table ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF0909',
+      cancelButtonColor: '#D7D7D7',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
+        this.refresh();
+        this.tableService.deleteOne(id).subscribe(
+          data => {
+            this.refresh();
+            if (data == true) {
+              Swal.fire(
+                'Réussite !',
+                'Votre table a bien été supprimée.',
+                'success'
+              );
+            }
+            else {
+              Swal.fire(
+                'Echec...',
+                "Votre table n'a pas pu être supprimée.",
+                'error'
+              );
+            }
+          }
+        );
+      }
+    }
+    );
   }
 
 }

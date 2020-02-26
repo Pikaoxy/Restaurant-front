@@ -1,14 +1,14 @@
-<div id='calendar'></div>
+
 
 <div class='app'>
 
   <div class='app-calendar'>
     <full-calendar
       #calendar
-      defaultView="dayGridDay"
+      defaultView="timeGridDay"
       [header]="{
         left: 'prev,next today',
-        center: 'title',
+        center: 'title', 
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       }"
       [weekends]="calendarWeekends"
@@ -19,11 +19,17 @@
       [events]="calendarEvents"
       [eventDurationEditable]="false"
       (dateClick)="handleDateClick($event)"
-      (eventClick)="options.eventClick"
+      (eventClick)="deleteEvent($event)"
       [minTime]="calendarMinTime"
-      [customButtons]="options.customButtons"
-
-    ></full-calendar>
+      (eventPositioned)="modifierHeureEvent($event)" 
+      (select)="supprimerEvent($event)"
+      (eventRender)="afficherIcone($event)"
+      
+      [contentHeight]="double"
+      [height]="calendarHeight"
+    >
+    <span class="removeEvent glyphicon glyphicon-trash pull-right" id="Delete"></span>
+  </full-calendar>
   </div>
 
 </div>

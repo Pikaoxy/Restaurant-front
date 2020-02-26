@@ -14,13 +14,13 @@
 }
 /* display none until init */
 .owl-carousel{
-  display: none;
+  /* display: none; */
   position: relative;
   width: 100%;
   touch-action: pan-y;
 }
 .owl-carousel .owl-wrapper{
-  display: none;
+  /* display: none; */
   position: relative;
   transform: translate3d(0px, 0px, 0px);
 }

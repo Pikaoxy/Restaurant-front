@@ -1,57 +1,3 @@
-<!-- <h1 class="display-4 text-center">Ajouter un plat</h1>
-<br>
-
-
-<form>
-    <fieldset class="container">
-        <div class="form-group row">
-            <div class="col-4">
-                <label for="nom">Nom</label>
-            </div>
-            <div class="col-8">
-                <input name="nom" type="text" class="form-control" id="nom" [(ngModel)]="newPlat.nom" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label for="stock">Stock</label>
-            </div>
-            <div class="col-8">
-                <input name="stock" type="number" class="form-control" id="stock" [(ngModel)]="newPlat.stock" min="0"
-                    required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label for="prix">Prix</label>
-            </div>
-            <div class="col-8">
-                <input name="prix" type="text" class="form-control" id="prix" [(ngModel)]="newPlat.prix" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label for="categorie">Catégorie</label>
-            </div>
-            <div class="col-8">
-                <select name="categorie" class="custom-select" id="categorie" required [(ngModel)]="newPlat.categorie">
-                    <option selected disabled value="">Choisissez...</option>
-                    <option>Entrée</option>
-                    <option>Plat</option>
-                    <option>Dessert</option>
-                    <option>Boisson</option>
-                </select>
-            </div>
-        </div>
-        <br>
-        <div align="center">
-            <button type="submit" class="btn btn-primary" (click)="ajouterPlat()">Valider</button>
-        </div>
-    </fieldset>
-</form> -->
-
-
-
 <div class="container">
 
     <h2 class="mat-h2"><u>Liste des plats</u></h2>
@@ -97,6 +43,7 @@
                                     [formControl]="modif" (click)="modifierPlat(uneEntree.idPlat)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                <button type="button" mat-raised-button color="warn" name="close" (click)="supprimerPlat(uneEntree.idPlat)"><mat-icon>close</mat-icon></button>
                             </div>
                         </td>
                     </ng-container>
@@ -136,6 +83,7 @@
                                     [formControl]="modif" (click)="modifierPlat(unPlat.idPlat)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                <button type="button" mat-raised-button color="warn" name="close" (click)="supprimerPlat(unPlat.idPlat)"><mat-icon>close</mat-icon></button>
                             </div>
                         </td>
                     </ng-container>
@@ -175,6 +123,7 @@
                                     [formControl]="modif" (click)="modifierPlat(unDessert.idPlat)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                <button type="button" mat-raised-button color="warn" name="close" (click)="supprimerPlat(unDessert.idPlat)"><mat-icon>close</mat-icon></button>
                             </div>
                         </td>
                     </ng-container>
@@ -214,6 +163,7 @@
                                     [formControl]="modif" (click)="modifierPlat(uneBoisson.idPlat)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                <button type="button" mat-raised-button color="warn" name="close" (click)="supprimerPlat(uneBoisson.idPlat)"><mat-icon>close</mat-icon></button>
                             </div>
                         </td>
                     </ng-container>
@@ -252,15 +202,15 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Catégorie</mat-label>
                         <mat-select required [(ngModel)]="newPlat.categorie" name="categorie">
-                            <mat-option value="entree">Entrée</mat-option>
-                            <mat-option value="plat">Plat</mat-option>
-                            <mat-option value="dessert">Dessert</mat-option>
-                            <mat-option value="boisson">Boisson</mat-option>
+                            <mat-option value="Entrée">Entrée</mat-option>
+                            <mat-option value="Plat">Plat</mat-option>
+                            <mat-option value="Dessert">Dessert</mat-option>
+                            <mat-option value="Boisson">Boisson</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <br>
                     <div align="center">
-                        <button mat-raised-button class="add-button" (click)="ajouterPlat()">
+                        <button mat-flat-button class="add-button" (click)="ajouterPlat()">
                             Ajouter un nouveau plat
                         </button>
                     </div>
@@ -296,7 +246,7 @@
                     </mat-form-field>
                     <br>
                     <div align="center">
-                        <button mat-raised-button class="add-button" (click)="modificationPlat()">
+                        <button mat-flat-button class="add-button" (click)="modificationPlat()">
                             Modifier le plat
                         </button>
                     </div>
